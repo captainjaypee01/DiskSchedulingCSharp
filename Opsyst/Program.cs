@@ -187,20 +187,20 @@ namespace Opsyst
                 Console.Write(d[i] + " --> "); 
             }
             Console.Write("0 -->"); 
-            for (i = dloc; i < n; i++)
+            for (i = dloc+1; i < n; i++)
             {
                 if (i == (n - 1)) break;
-                if (i == dloc)
-                    sum += (d[i + 1] - 0);
+                if (i == dloc+1)
+                    sum += (d[i] - 0);
                 else
                 {
-                    if (d[i + 1] > d[i])
-                        sum += (d[i + 1] - d[i]);
+                    if (d[i] > d[i - 1])
+                        sum += (d[i] - d[i - 1]);
                     else
-                        sum += (d[i] - d[i + 1]);
+                        sum += (d[i - 1] - d[i]);
                 } 
                 Console.Write(d[i]);
-                if(i != n-2) Console.Write(" --> "); 
+                if(i != n-2 || i != dloc) Console.Write(" --> "); 
             } 
             Console.WriteLine("\nTotal Head Movements: " + sum); 
         }
@@ -292,12 +292,130 @@ namespace Opsyst
         {
 
             Console.WriteLine("\nSHOW LOOK");
+            // Initialization 
+            int i, j, sum = 0, min = 0, n;
+            int[] d = new int[20];
+            int disk;   //loc of head
+            int temp, max = 200;
+            int dloc;   //loc of disk in array
+            string inp;
+
+            Console.Write("Enter number of location: "); 
+            inp = Console.ReadLine();
+            n = Convert.ToInt32(inp); 
+            Console.Write("Enter position of head: "); 
+            inp = Console.ReadLine();
+            disk = Convert.ToInt32(inp); 
+            Console.WriteLine("Enter elements of disk queue:"); 
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Track " + (i + 1) + " : ");
+                inp = Console.ReadLine();
+                d[i] = Convert.ToInt32(inp); 
+            }
+            d[n] = disk;
+            n = n + 1;
+            for (i = 0; i < n; i++)    // sorting disk locations
+            {
+                for (j = i; j < n; j++)
+                {
+                    if (d[i] > d[j])
+                    {
+                        temp = d[i];
+                        d[i] = d[j];
+                        d[j] = temp;
+                    }
+                }
+            }
+            dloc = 0;
+            for (i = 0; i < n; i++)   // to find loc of disc in array
+            {
+                if (disk == d[i]) { dloc = i; break; }
+            } 
+            Console.WriteLine("===");
+            Console.WriteLine("Movements");
+            for(i = dloc+1;i < n;i++){    
+                
+                sum += Math.Abs(d[i] - d[i-1]); 
+                Console.Write(d[i] + "-");
+                
+            } 
+            for(i = dloc;i > 0;i--){
+                if(i == dloc)
+                    sum += Math.Abs(d[n-1] - d[i-1]);
+                else
+                    sum += Math.Abs(d[i] - d[i-1]);
+                
+                Console.Write(d[i] + "-");
+            }
+	        
+
+	        Console.WriteLine("\nTotal Head Movement: " + sum);
         }
 
         public void clook()
         {
 
             Console.WriteLine("\nSHOW C-LOOK");
+             // Initialization 
+            int i, j, sum = 0, min = 0, n;
+            int[] d = new int[20];
+            int disk;   //loc of head
+            int temp, max = 200;
+            int dloc;   //loc of disk in array
+            string inp;
+
+            Console.Write("Enter number of location: "); 
+            inp = Console.ReadLine();
+            n = Convert.ToInt32(inp); 
+            Console.Write("Enter position of head: "); 
+            inp = Console.ReadLine();
+            disk = Convert.ToInt32(inp); 
+            Console.WriteLine("Enter elements of disk queue:"); 
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Track " + (i + 1) + " : ");
+                inp = Console.ReadLine();
+                d[i] = Convert.ToInt32(inp); 
+            }
+            d[n] = disk;
+            n = n + 1;
+            for (i = 0; i < n; i++)    // sorting disk locations
+            {
+                for (j = i; j < n; j++)
+                {
+                    if (d[i] > d[j])
+                    {
+                        temp = d[i];
+                        d[i] = d[j];
+                        d[j] = temp;
+                    }
+                }
+            }
+            dloc = 0;
+            for (i = 0; i < n; i++)   // to find loc of disc in array
+            {
+                if (disk == d[i]) { dloc = i; break; }
+            } 
+            Console.WriteLine("===");
+            Console.WriteLine("Movements");
+            for(i = dloc+1;i < n;i++){    
+                
+                sum += Math.Abs(d[i] - d[i-1]); 
+                Console.Write(d[i] + "-");
+                
+            } 
+            for(i = 0;i < dloc;i++){
+                if(i == 0)
+                    sum += Math.Abs(d[n-1] - d[i]);
+                else
+                    sum += Math.Abs(d[i] - d[i-1]);
+                
+                Console.Write(d[i] + "-");
+            }
+	        
+
+	        Console.WriteLine("\nTotal Head Movement: " + sum);
         }
 
         // Calculates difference of each  
