@@ -207,33 +207,85 @@ namespace Opsyst
 
         public void cscan()
         {
-            /*
-            int i = 0, curr_val = 0, sav_val = ran_array[start], difference = 0;
-	        int head_movement = 0, curr_i = 0;
-
-	        for(i = start-1; i >= 0; --i) {
-
-		        curr_val = ran_array[i];
-		        difference = abs(sav_val - curr_val);
-		        head_movement += difference;
-		        sav_val = curr_val;
-
-	        }
-
-	        /* used to subtract value from zero, or just add same value *
-	        head_movement += sav_val;
-	        sav_val = 0;
-
-	        for(i = start+1; i < REQUESTS; i++) {
-
-		        curr_val = ran_array[i];
-		        difference = abs(curr_val - sav_val);
-		        head_movement += difference;
-		        sav_val = curr_val;
-
-	        }*/
 
             Console.WriteLine("\nSHOW C-SCAN");
+            // Initialization 
+            int i, j, sum = 0, min = 0, n;
+            int[] d = new int[20];
+            int disk;   //loc of head
+            int temp, max = 200;
+            int dloc;   //loc of disk in array
+            string inp;
+
+            Console.Write("Enter number of location: "); 
+            inp = Console.ReadLine();
+            n = Convert.ToInt32(inp); 
+            Console.Write("Enter position of head: "); 
+            inp = Console.ReadLine();
+            disk = Convert.ToInt32(inp); 
+            Console.WriteLine("Enter elements of disk queue:"); 
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Track " + (i + 1) + " : ");
+                inp = Console.ReadLine();
+                d[i] = Convert.ToInt32(inp); 
+            }
+            d[n] = disk;
+            n = n + 1;
+            for (i = 0; i < n; i++)    // sorting disk locations
+            {
+                for (j = i; j < n; j++)
+                {
+                    if (d[i] > d[j])
+                    {
+                        temp = d[i];
+                        d[i] = d[j];
+                        d[j] = temp;
+                    }
+                }
+            }
+            dloc = 0;
+            for (i = 0; i < n; i++)   // to find loc of disc in array
+            {
+                if (disk == d[i]) { dloc = i; break; }
+            } 
+            Console.WriteLine("===");
+            Console.WriteLine("Movements");
+            for(i = dloc;i < n;i++){    
+                
+                if(i != (n-1)){
+                    sum += Math.Abs(d[i+1] - d[i]);
+                    
+                    Console.Write(d[i] + "-");
+                }
+                if(i == (n-1)){
+                    sum += (max - d[i]);
+                    Console.Write(d[i] + "-");
+                }
+                
+            }
+            Console.Write(max + "-");
+            for(i = 0;i < dloc + 1;i++){
+                if(i == 0){
+                    sum += max;
+                    Console.Write(min + "-");
+                }
+                else if(i-1 == 0){
+                    sum += Math.Abs(d[i-1] - min);
+                    Console.Write(d[i-1] + "-");
+                }
+                else{
+                    sum += Math.Abs((d[i - 2] - d[i - 1]));
+                    Console.Write(d[i-1]);
+                    if(i != (dloc-2))
+                        Console.Write("-");
+                }
+
+            }
+	        
+
+	        Console.WriteLine("\nTotal Head Movement: " + sum);
+
         }
 
         public void look()

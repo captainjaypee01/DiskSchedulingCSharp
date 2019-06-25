@@ -1,7 +1,7 @@
-C:\Users\jopdal\source\repos\Opsyst\Opsyst\obj\Debug\Opsyst.csprojAssemblyReference.cache
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\obj\Debug\Opsyst.csproj.CoreCompileInputs.cache
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\bin\Debug\Opsyst.exe.config
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\bin\Debug\Opsyst.exe
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\bin\Debug\Opsyst.pdb
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\obj\Debug\Opsyst.exe
 C:\Users\jopdal\source\repos\Opsyst\Opsyst\obj\Debug\Opsyst.pdb
+C:\Users\jopdal\source\repos\Opsyst\Opsyst\obj\Debug\Opsyst.csprojAssemblyReference.cache
